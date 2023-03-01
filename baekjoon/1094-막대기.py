@@ -10,6 +10,3 @@ while sum(stick) is not X:
         stick.append(tmp)
         
 print(len(stick))
-        
-        
-        
