@@ -1,1 +1,4 @@
-print(eval("1+2*3"))
+def set(A,B=10):
+    print(A+B)
+    
+set(1)
