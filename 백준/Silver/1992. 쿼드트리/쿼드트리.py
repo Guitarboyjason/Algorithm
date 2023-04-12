@@ -4,7 +4,6 @@ def quad_tree(graph):
     n = len(graph)
     if n == 1:
         return graph[0][0]
-    tmp = []
     if sum([sum(list(map(int,list(i)))) for i in graph]) == n**2 or sum([sum(list(map(int,list(i)))) for i in graph]) == 0:
         return graph[0][0]
 
