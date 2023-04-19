@@ -28,11 +28,6 @@ else:
             end = mid-1
             k = mid
 
-    # if k < min_cnt:
-    #     print(1)
-    # elif k > max_cnt:
-    #     print(max_cnt)
-    # else:
     print(k)
 
 
