@@ -1,33 +1,39 @@
-#1759 암호 만들기
-
-# 하나 이상의 모음 (a,e,i,o,u)가 퐘되고, 두개 이상의 자음으로 구성되어 있음.
-# 알파벳 오름차순으로 구성되어있어야 한다.
-# 중복 불가능
 from itertools import combinations
-L, C = map(int,input().split())
 
-arr = [x for x in input().split()]
-arr.sort()
-collection_list = ['a','e','i','o','u']
+collections = list("a,e,i,o,u".split(","))
+# print(collections)
 
-collection = []         #모음
-consonant = []          #자음
-for i in arr:
-    if i in collection_list:
-        collection.append(i)
+L,C = map(int,input().split())
+list_collections = []
+list_consonant = []
+
+list_input = list(input().split())
+# print(list_input)
+for c in list_input:
+    # print(c)
+    if c in collections:
+        list_collections.append(c)
     else:
-        consonant.append(i)
-tmp = list(combinations(arr,L))
+        list_consonant.append(c)
 
-for i in tmp:
-    col_cnt =0
-    con_cnt = 0
-    for j in i:
-        if j in collection_list:
-            col_cnt +=1
-        else:
-            con_cnt +=1
-    if col_cnt>=1 and con_cnt>=2:
-        print(''.join([str(elem)for elem in i]))
-  
+pos_collections = []
+pos_consonant = []
+for i in range(1,len(list_collections)+1):
+    pos_collections.extend(list(combinations(list_collections,i)))
 
+for j in range(2,len(list_consonant)+1):
+    pos_consonant.extend(list(combinations(list_consonant,j)))
+    
+# print(pos_collections)
+# print(pos_consonant)
+answer = []
+for i in range(len(pos_collections)):
+    for j in range(len(pos_consonant)):
+        tmp = "".join(pos_collections[i]) + "".join(pos_consonant[j])
+        if len(tmp) == L:
+            answer.append("".join(sorted(tmp)))
+            
+# print(*sorted(answer))
+# answer = list(set(answer))
+for ans in sorted(answer):
+    print(ans)
