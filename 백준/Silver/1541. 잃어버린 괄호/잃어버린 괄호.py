@@ -1,27 +1,31 @@
-#괄호를 적절하게 쳐서 식 값의 최솟값을 만들자
+# 괄호를 적절히 쳐서 이 식의 값을 최소로 만드려 한다.
+# 값을 최소로 만드는 프로그램을 작성하라
 
-line = input()
-tmp_line = line.replace('+','-')
-arr_num = [int(i) for i in tmp_line.split(sep='-')]
-arr_oper = []
-for i in line:
-    if i == '-' or i == '+':
-        arr_oper.append(i)
-# print(arr_num)
-# print(arr_oper)
-# print(line)
-index = -1
-for i in range(len(arr_oper)):
-    if arr_oper[i] == '-':
-        index = i
-        break
-sum = 0
-if index != -1:
-    for i in range(index+1):
-        sum += arr_num[i]
-    for i in range(index+1,len(arr_num)):
-        sum -= arr_num[i]
-else:
-    for i in range(len(arr_num)):
-        sum += arr_num[i]
-print(sum)
+# 곱셈과 덧셈이 없으므로 음수를 기준으로 생각하면 될 것 같다.
+# 뺄셈 뒤에 덧셈이 길게 들어올 수 있도록
+
+formula = input()
+
+flag = False
+operations = ["+","-"]
+answer_formula = ""
+# answer = 0
+num = ""
+for c in formula:
+    if c in operations:
+        answer_formula += str(int(num))
+        num = ""
+        if c == "-":
+            if flag:
+                answer_formula+=")" + c +"("
+            else:
+                answer_formula+=c + "("
+            flag = True
+        else:
+            answer_formula += c
+    else:
+        num += c
+answer_formula += str(int(num))
+if flag:
+    answer_formula += ")"
+print(eval(answer_formula))
