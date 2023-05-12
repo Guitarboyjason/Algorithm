@@ -1,65 +1,33 @@
+# 일관성이 없다 -> 한 번호가 다른 번호의 접두어인 경우
+
+# dictionary형식으로 진행을 하는데 끝났으면 done flage를 True로 바꿔준다
 import sys
-class Node(object):
-    def __init__(self,key,data = None):
-        self.key = key
-        self.data = data
-        self.children = {}
+input = sys.stdin.readline
 
-class Trie:
-    def __init__(self):
-        self.head = Node(None)
-
-    def insert(self,string):
-        current_node = self.head
-        for char in string:
-            if char not in current_node.children:
-                current_node.children[char] = Node(char)
-            current_node = current_node.children[char]    
-        current_node.data = string ##done_flag
-        
-    def search(self,string):
-        current_node = self.head
-        for char in string:
-            if char not in current_node.children:
-                return False
-            current_node = current_node.children[char]
-        if current_node.data:
-            return True
-        return False
+for test_case in range(int(input())):
+    n = int(input().rstrip())
+    numbers = [input().rstrip() for _ in range(n)]
+    numbers.sort()
+    num_dict = {"done_flag" : False}
     
-    def starts_with(self,prefix):
-        current_node = self.head
-        words = []
-        for p in prefix:
-            if p not in current_node.children:
-                return False
-            current_node = current_node.children[p]
-        
-        current_node = [current_node]    
-        next_node = []
-        
-        while True:
-            for node in current_node:
-                if node.data:
-                    words.append(node.data)
-                next_node.extend(list(node.children.values()))
-            if len(next_node) != 0:
-                current_node = next_node
-                next_node = []
-            else:
+    consistency = True
+    for num in numbers:
+        tmp = num_dict
+        for c in num:
+            if c not in tmp:
+                tmp[c] = {"done_flag" : False}
+            if tmp["done_flag"] == True:
+                consistency = False     # 잘못됨을 인지
                 break
-        return words
-
-for t in range(int(sys.stdin.readline())):    
-    trie = Trie()
-    n = int(sys.stdin.readline())
-    nums = [sys.stdin.readline().rstrip() for _ in range(n)]
-    for num in nums:
-        trie.insert(num)
-    
-    for num in nums:
-        if len(trie.starts_with(num)) > 1:
-            print("NO")
+            tmp = tmp[c]
+        
+        if not consistency:
             break
-    else:
+        # 마지막에 도착
+        tmp["done_flag"] = True
+        # print(num_dict)
+
+    if consistency:
         print("YES")
+    else:
+        print("NO")
