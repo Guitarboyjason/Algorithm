@@ -1,19 +1,21 @@
-N, M = map(int,input().split())
-trees_height = list(map(int,input().split()))
-start = 0
-end = max(trees_height)
-middle = (start+end)//2
-while start <= end :
-    tmp = [i - middle for i in trees_height if i - middle >= 0]
-    if sum(tmp) == M:
-        break
-    elif sum(tmp) < M:
-        M -= sum(tmp)
-        trees_height = [i for i in trees_height if i - middle < 0] + [middle for _ in range(len(tmp))]
-        end = middle - 1
-        middle = (end + start) // 2
+import sys
 
+input = sys.stdin.readline
+N, M = map(int, input().split())
+
+trees = list(map(int, input().split()))
+
+max_tree = max(trees)
+
+start = 0
+end = max_tree
+n_middle = 0
+while start <= end:
+    middle = (start + end) // 2
+    if sum([i - middle for i in trees if i > middle]) < M:
+        end = middle - 1
     else:
         start = middle + 1
-        middle = (end+start)//2
-print(middle)
+        n_middle = middle
+
+print(n_middle)
