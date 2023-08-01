@@ -9,7 +9,8 @@ public class Main {
 	static int[] tgt;
 	static boolean[] visited;
 	static int N, M;
-
+    static StringBuilder sb = new StringBuilder();
+    
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -25,15 +26,15 @@ public class Main {
 //		
 //		for (int i = 0; i < N + 1;)
 		cnt_perm(0);
-
+        System.out.println(sb);
 	}
 
 	static void cnt_perm(int index) {
 		if (index == M) {
 			for (int i = 0; i < tgt.length; i++) {
-				System.out.print(tgt[i] + " ");
+                sb.append(tgt[i]+" ");
 			}
-			System.out.println();
+            sb.append("\n");
 			return;
 		}
 		int cnt = 0;
