@@ -35,23 +35,11 @@ public class Main {
 		}
 		costs = new int[N + 1];
 
-//		int max_value = -1;
-//		for (int i = 1; i < N + 1; i++) {
-////			if (visited[i] == false)
-//			costs[i] = bfs(i);
-//			max_value = Math.max(max_value, costs[i]);
-//		}
-
 		int max = -1;
 		for (int i = 1; i < N + 1; i++) {
-//			max = Math.max(max, dfs(i));
 			costs[i] = dfs(i);
 			max = Math.max(max, costs[i]);
 		}
-//		for (int i = 1; i < N + 1; i++) {
-//			System.out.println(costs[i]);
-//		}
-
 		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i < N + 1; i++) {
 			if (costs[i] == max) {
@@ -80,83 +68,9 @@ public class Main {
 					cost++;
 				}
 			}
-//			if (visited)
 		}
 		return cost;
 
 	}
 
-//	public static int dfs(int root) {
-//		int result = 0;
-//		Queue<Integer> queue = new LinkedList<>();
-//
-//		queue.offer(root);
-//		boolean[] visited = new boolean[N + 1];
-//
-//		while (!queue.isEmpty()) {
-//			int tmp = queue.poll();
-//
-//			visited[tmp] = true;
-//
-//			for (int i = 0; i < graph.get(tmp).size(); i++) {
-//				int nNode = graph.get(tmp).get(i);
-//
-//				if (!visited[nNode]) {
-//
-//					visited[nNode] = true;
-//
-//					result++;
-//
-//					queue.add(nNode);
-//
-//				}
-//			}
-//
-//		}
-//
-//		int max_value = -1;
-//		for (int i = 1; i <= N; i++) {
-//			max_value = Math.max(max_value, costs[i]);
-//
-//		}
-//		return result;
-//	}
-
-	public static int bfs(int root) {
-		// 나오는 거리 최댓값을 리턴하는-걸로 바꾸자
-
-		// 이게 왜 아님 왜 시간초과가 뜨는거임 ㄹㅇ로
-		int[] costs = new int[N + 1];
-
-		Deque<Integer> queue = new ArrayDeque<>();
-
-//		int[] tmp = { root, 0 };
-		queue.add(root);
-		costs[root] = 0;
-		visited = new boolean[N + 1];
-
-		int max_value = -1;
-		while (!queue.isEmpty()) {
-			int cNode = queue.poll();
-			int cCost = costs[cNode];
-			visited[cNode] = true;
-
-			for (int i = 0; i < graph.get(cNode).size(); i++) {
-				int nNode = graph.get(cNode).get(i);
-
-				if (costs[nNode] < cCost + 1 && visited[nNode] == false) {
-					costs[nNode] = cCost + 1;
-					queue.add(nNode);
-//					costs[nNode] = cCost + 1;
-					max_value = Math.max(max_value, cCost + 1);
-				}
-			}
-
-		}
-//		for (int i = 1; i <= N; i++) {
-//			max_value = Math.max(max_value, costs[i]);
-//
-//		}
-		return max_value;
-	}
 }
