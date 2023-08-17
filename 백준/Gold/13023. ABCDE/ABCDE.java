@@ -67,12 +67,25 @@ public class Main {
 //				visited[i] = false;
 //			}
 //		});
-		for (int i : friendship.get(root)) {
-			if (!visited[i]) {
-				visited[i] = true;
-				dfs(i, cnt + 1);
-				visited[i] = false;
-			}
+//		for (int i : friendship.get(root)) {
+//			if (!visited[i]) {
+//				visited[i] = true;
+//				dfs(i, cnt + 1);
+//				visited[i] = false;
+//			}
+//		}
+
+		List<Integer> numFriends = friendship.get(root);
+		int size = numFriends.size();
+
+		for (int i = 0; i < size; i++) {
+			int n = numFriends.get(i);
+
+			if (visited[n])
+				continue;
+			visited[n] = true;
+			dfs(n, cnt + 1);
+			visited[n] = false;
 		}
 	}
 }
