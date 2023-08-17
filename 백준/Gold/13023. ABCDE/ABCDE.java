@@ -60,22 +60,19 @@ public class Main {
 		}
 		visited[root] = true;
 
-		friendship.get(root).forEach((i) -> {
+//		friendship.get(root).forEach((i) -> {
+//			if (!visited[i]) {
+//				visited[i] = true;
+//				dfs(i, cnt + 1);
+//				visited[i] = false;
+//			}
+//		});
+		for (int i : friendship.get(root)) {
 			if (!visited[i]) {
 				visited[i] = true;
 				dfs(i, cnt + 1);
 				visited[i] = false;
 			}
-		});
-//		for(int i = 0 ; i < friendship.get(root).size() ; i ++)
-//		for (int i = 0; i < N; i++) {
-//			if (friendship[root][i] && !visited[i]) {
-//				visited[i] = true;
-//				dfs(i, cnt + 1);
-//				visited[i] = false;
-//			}
-//
-//		}
-
+		}
 	}
 }
