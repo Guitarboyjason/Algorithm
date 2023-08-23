@@ -20,30 +20,18 @@ public class Main {
 		for (int i = 1; i <= V; i++) {
 			parent[i] = i;
 		}
-		ArrayList<ArrayList<int[]>> graph = new ArrayList<>();
 		ArrayList<int[]> v = new ArrayList<>();
-
-		for (int i = 0; i <= V; i++) {
-			graph.add(new ArrayList<>());
-		}
 
 		for (int i = 0; i < E; i++) {
 			st = new StringTokenizer(br.readLine());
 			int A = Integer.parseInt(st.nextToken());
 			int B = Integer.parseInt(st.nextToken());
 			int C = Integer.parseInt(st.nextToken());
-			graph.get(A).add(new int[] { B, C });
-			graph.get(B).add(new int[] { A, C }); // 이렇게 그래프로 저장하지 않아도 되는듯
 			v.add(new int[] { A, B, C });
 
 		}
 
 		Collections.sort(v, (o1, o2) -> o1[2] - o2[2]);
-
-//		System.out.println(v.toString());
-//		for (int i = 0; i < v.size(); i++) {
-//			System.out.println(Arrays.toString(v.get(i)));
-//		}
 
 		for (int i = 0; i < E; i++) {
 			int[] tmp = v.get(i);
