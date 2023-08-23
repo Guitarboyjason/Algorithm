@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 public class Main {
 	static int[] parent;
 	static int sum = 0;
+	static int cnt = 0;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -40,6 +41,9 @@ public class Main {
 			} else {
 				merge(tmp[0], tmp[1]);
 				sum += tmp[2];
+				cnt++;
+				if (cnt == V - 1)
+					break;
 			}
 
 		}
