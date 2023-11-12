@@ -49,8 +49,8 @@ and car.car_id not in
     datediff(end_date, "2022-11-01") <=0
 ) 
 
-order by car.car_id
-    ) sub, CAR_RENTAL_COMPANY_DISCOUNT_PLAN discount
+    ) sub, 
+    CAR_RENTAL_COMPANY_DISCOUNT_PLAN discount
     where sub.car_type = discount.car_type
     and discount.duration_type like "3%"
     ) subsub) subsubsub
