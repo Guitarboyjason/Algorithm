@@ -15,5 +15,5 @@ for i in range(M):
             include_X = True
     if include_X:
         position_row[i] = True
-
+ 
 print(max(position_column.count(False),position_row.count(False)))

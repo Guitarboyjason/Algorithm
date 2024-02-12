@@ -13,11 +13,12 @@
 #         if index > jndex and 
 
 # 가장 긴 증가수열을 구하면 되겠구나
-
+import sys
+input = sys.stdin.readline
 N= int(input())
 graph = [list(map(int,input().split()))for _ in range(N)]
 graph.sort()
-dp = [1 for i in range(N)]
+dp = [1 for _ in range(N)]
 
 for i in range(N):
     for j in range(i):
