@@ -1,2 +1,1 @@
-num = int(input())
-print(int(pow(num,0.5)))
+print(int(pow(int(input()),0.5)))
